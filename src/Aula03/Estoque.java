@@ -20,10 +20,10 @@ public class Estoque {
         idEstoque = idEstoque.concat(this.nome);
     }
 
-    public void inserirProduto(Produto novoProduto) {
+    public void inserirProdutoNoEstoque(Produto novoProduto) {
         boolean jaExisteProduto = false;
         for (Produto produto : listaDeProdutos) {
-            if (produto.nomeProduto.equals(novoProduto.nomeProduto) && produto.getMarca().equals(novoProduto.getMarca())) {
+            if (produto.nomeProduto.equalsIgnoreCase(novoProduto.nomeProduto) && produto.getMarca().equalsIgnoreCase(novoProduto.getMarca())) {
                 int qtd = produto.getQtd() + novoProduto.getQtd();
                 produto.setQtd(qtd);
                 jaExisteProduto = true;
@@ -38,13 +38,13 @@ public class Estoque {
         }
     }
 
-    public void deletarProduto (Produto produto) {
+    public void deletarProdutoNoEstoque (Produto produto) {
         boolean produtoDeletado = false;
         for (Produto item : listaDeProdutos) {
-            if (item.getIdProduto().equals(produto.getIdProduto())) {
+            if (item.getIdProduto().equalsIgnoreCase((produto.getIdProduto()))) {
                 listaDeProdutos.remove(produto);
                 produtoDeletado = true;
-                System.out.println("Produto deletado!");
+                System.out.println("Produto excluído!");
                 break;
             }
         }
@@ -59,4 +59,13 @@ public class Estoque {
             System.out.println(item);
         }
     }
+
+    public Produto procurarProdutoNoEstoque(String idProduto) {
+        for (Produto item : listaDeProdutos) {
+            if (item.getIdProduto().equalsIgnoreCase(idProduto)){
+                return item;
+            }
+        } return null;
+    }
+
 }
