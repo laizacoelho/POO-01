@@ -28,14 +28,14 @@ public class ExercicioEstoque {
                 switch (opcao) {
                     case 1 -> {
                         System.out.println("Qual o nome do estoque?");
-                        String nomeEstoque2 = scanner.nextLine();
-                        Estoque estoque2 = new Estoque(nomeEstoque2);
-                        loja.estoques.add(estoque2);
+                        String nomeEstoque = scanner.nextLine();
+                        Estoque estoque = new Estoque(nomeEstoque);
+                        loja.estoques.add(estoque);
                     }
                     case 2 -> {
                         System.out.println("Informe o Id do estoque que deseja cadastrar o produto:");
                         loja.imprimirListaDeEstoque();
-                        System.out.println("Qual o estoque deseja cadastrar o produto?");
+                        System.out.println("Qual o ID do estoque deseja cadastrar o produto?");
                         String idEstoqueEscolhido = scanner.nextLine();
                         Estoque estoque = loja.procurarEstoque(idEstoqueEscolhido);
                         if (estoque == null) {
@@ -50,7 +50,6 @@ public class ExercicioEstoque {
                             System.out.println("Qual a quantidade?");
                             int quantidade = scanner.nextInt();
                             scanner.nextLine();
-
                             System.out.println("Qual a marca deste produto?");
                             String nomeMarca = scanner.nextLine();
                             Produto novoProduto = new Produto(nomeProduto, nomeSessao, nomeTipo, quantidade, nomeMarca);
@@ -107,7 +106,11 @@ public class ExercicioEstoque {
                         loja.imprimirListaDeEstoque();
                         String idEstoqueEscolhido = scanner.nextLine();
                         Estoque estoque = loja.procurarEstoque(idEstoqueEscolhido);
-                        estoque.imprimirListaDeProdutosEstoque();
+                        if (estoque == null) {
+                            System.out.println("ID de estoque inválido");
+                        } else {
+                            estoque.imprimirListaDeProdutosEstoque();
+                        }
                     }
                     case 6 -> {
                         scanner.close();
