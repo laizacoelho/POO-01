@@ -48,8 +48,6 @@ public class Produto {
             case 3 -> this.tipo = novoDado;
             case 4 -> this.qtd = Integer.parseInt(novoDado);
             case 5 -> this.marca = novoDado;
-            default -> {
-            }
         }
     }
 

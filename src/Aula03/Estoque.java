@@ -60,12 +60,19 @@ public class Estoque {
         }
     }
 
-    public Produto procurarProdutoNoEstoque(String idProduto) {
-        for (Produto item : listaDeProdutos) {
-            if (item.getIdProduto().equalsIgnoreCase(idProduto)){
-                return item;
-            }
-        } return null;
+    public List<Produto> getListaDeProdutos() {
+        return listaDeProdutos;
     }
 
+    public String getIdEstoque() {
+        return idEstoque;
+    }
+
+    @Override
+    public String toString() {
+        return "Estoque{" +
+                "nome='" + nome + '\'' +
+                ", idEstoque='" + idEstoque + '\'' +
+                '}';
+    }
 }
