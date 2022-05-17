@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaEscola {
-    public List<Pessoa> pessoas = new ArrayList<>();
     public List<Aluno> alunos = new ArrayList<>();
     public List<Funcionario> funcionarios = new ArrayList<>();
     public List<Professor> professores = new ArrayList<>();
@@ -34,14 +33,56 @@ public class SistemaEscola {
         return null;
     }
 
+    public Funcionario procurarFuncionario(String cpfFuncionario) {
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getCpf().equals(cpfFuncionario)) {
+                return funcionario;
+            }
+        }
+        return null;
+    }
+
+    public Professor procurarProfessor(String cpfProfessor) {
+        for (Professor professor : professores) {
+            if (professor.getCpf().equals(cpfProfessor)) {
+                return professor;
+            }
+        }
+        return null;
+    }
+
     public Aluno procurarAluno(String cpfAluno) {
         for (Aluno aluno : alunos) {
             if (aluno.getCpf().equals(cpfAluno)) {
                 return aluno;
             }
         }
-        System.out.println("CPF inválido, não há registro deste aluno no cadastro da escola.");
         return null;
+    }
+
+    public void excluirPessoaDoSistema(String cpf) {
+        boolean foiExcluido = false;
+        Aluno aluno = procurarAluno(cpf);
+        if (aluno != null) {
+            alunos.remove(aluno);
+            foiExcluido = true;
+        } else {
+            Professor professor = procurarProfessor(cpf);
+            if (professor != null) {
+                professores.remove(professor);
+                foiExcluido = true;
+            }
+            Funcionario funcionario = procurarFuncionario(cpf);
+            if (funcionario != null) {
+                funcionarios.remove(funcionario);
+                foiExcluido = true;
+            }
+        }
+        if (foiExcluido) {
+            System.out.println("Excluído do sistema com sucesso.");
+        } else {
+            System.out.println("CPF inválido. Não existe esta pessoa no sistema da escola");
+        }
     }
 
     public void imprimirDisciplina() {

@@ -19,4 +19,12 @@ public class Pessoa {
     public String getCpf() {
         return cpf;
     }
+
+    protected void editarPessoa(String dado, int opcao) {
+        switch (opcao) {
+            case 1 -> this.nome = dado;
+            case 2 -> this.cpf = dado;
+            case 3 -> this.rg = dado;
+        }
+    }
 }

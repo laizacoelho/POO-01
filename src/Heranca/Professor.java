@@ -9,8 +9,6 @@ public class Professor extends  Funcionario{
 
     public Professor(String nome, String cpf, String rg, String cargo, double salario) {
         super(nome, cpf, rg, cargo, salario);
-        this.turmas = turmas;
-        this.disciplinas = disciplinas;
     }
 
     public void vincularTurma(Turma turma) {
@@ -26,14 +24,46 @@ public class Professor extends  Funcionario{
     public void imprimirProfessor() {
         imprimirFuncionario();
         System.out.println("Turmas: ");
-        for (Turma turma : turmas) {
+        for (Turma turma : this.turmas) {
             System.out.println(turma);
         }
         System.out.println("Disciplinas: ");
-        for (Disciplina disciplina : disciplinas) {
+        for (Disciplina disciplina : this.disciplinas) {
             System.out.println(disciplina);
         }
     }
 
+    public void editarProfessor(String dado, int opcao, Disciplina disciplinaParaAlterar, Turma turmaParaAlterar, int opcao2) {
+        switch (opcao) {
+            case 1, 2, 3, 4 -> editarFuncionario(dado, opcao);
 
+            case 5 -> {
+                if (opcao2 == 1) {
+                    for (Disciplina disciplina : this.disciplinas) {
+                        if (disciplina.getNomeDisciplina().equalsIgnoreCase(disciplinaParaAlterar.getNomeDisciplina())) {
+                            this.disciplinas.remove(disciplina);
+                            break;
+                        }
+                    }
+                } else {
+                    this.disciplinas.add(disciplinaParaAlterar);
+                }
+            }
+
+            case 6 -> {
+                if (opcao2 == 1) {
+                    for (Turma turma : this.turmas) {
+                        if (turma.getNomeTurma().equalsIgnoreCase(turmaParaAlterar.getNomeTurma())) {
+                            this.turmas.remove(turma);
+                            break;
+                        }
+                    }
+                } else {
+                    this.turmas.add(turmaParaAlterar);
+                }
+            }
+
+            default -> System.out.println("Opção inválida.");
+        }
+    }
 }

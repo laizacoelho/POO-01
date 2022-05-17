@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Aluno extends Pessoa{
     private int idade;
-    private String turma;
+    private Turma turma;
     private List<Disciplina> notas = new ArrayList<>();
 
-    public Aluno(String nome, String cpf, String rg, int idade, String turma) {
+    public Aluno(String nome, String cpf, String rg, int idade, Turma turma) {
         super(nome, cpf, rg);
         this.idade = idade;
         this.turma = turma;
@@ -28,6 +28,12 @@ public class Aluno extends Pessoa{
         return somaNotas/countDisciplinas;
     }
 
+    public void lancarNota (double nota, Disciplina disciplina) {
+        disciplina.setNota(nota);
+        this.notas.add(disciplina);
+        System.out.println("Nota registrada!");
+    }
+
     public void imprmirAluno() {
         System.out.println("Imprimindo dados do aluno:");
         imprimirPessoa();
@@ -39,6 +45,15 @@ public class Aluno extends Pessoa{
             }
             double mediaDasNotas = calcularMediaDasNotas();
             System.out.printf("Nota média: %.2f\n", mediaDasNotas);
+        }
+    }
+
+    public void editarAluno (String dado, int opcao,Turma turma) {
+        switch (opcao) {
+            case 1, 2, 3 -> editarPessoa(dado, opcao);
+            case 4 -> this.idade = Integer.parseInt(dado);
+            case 5 -> this.turma = turma;
+            default -> System.out.println("Opção inválida");
         }
     }
 }

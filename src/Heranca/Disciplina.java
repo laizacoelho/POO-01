@@ -9,8 +9,7 @@ public class Disciplina {
         this.nota = 0;
     }
 
-    public Disciplina(String nomeDisciplina, double nota) {
-        this.nomeDisciplina = nomeDisciplina;
+    public void setNota(double nota) {
         this.nota = nota;
     }
 
